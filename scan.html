@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>蜚语安全</title>
+
+
+  <link rel="stylesheet" type="text/css" href="public/bootstrap/css/bootstrap.css">
+
+  <!--[if lte IE 6]>
+  <link rel="stylesheet" type="text/css" href="public/bootstrap/css/bootstrap-ie6.css">
+  <![endif]-->
+  <!--[if lte IE 7]>
+  <link rel="stylesheet" type="text/css" href="public/bootstrap/css/ie.css">
+  <![endif]-->
+  <style>
+    .login-box{
+      width: 500px;
+      margin: auto;
+    }
+    .logo{
+      margin: auto;
+      text-align: center;
+    }
+    .login-title{
+      text-align: center;
+      white-space: nowrap;
+      font-size: 18px;
+      font-family: 'Arial Normal', 'Arial';
+      font-weight: 400;
+      font-style: normal;
+      color: #333333;
+      line-height: normal;
+      margin: 30px;
+    }
+
+    .login-box .controls .control-input, .login-box .controls select{
+      width: 300px;
+      height: 36px;
+      font-family: 'Arial Normal', 'Arial';
+      font-weight: 400;
+      font-style: normal;
+      font-size: 13px;
+      text-decoration: none;
+      color: #000000;
+      text-align: left;
+      border-radius: 0;
+    }
+    .control-input, select {
+      padding: 1px 0px 1px 0px;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    .text-center{
+      text-align: center;
+    }
+    .help-block{
+      margin: 30px auto;
+    }
+
+    .inputICCID{
+      width: 200px !important;
+    }
+    #get_mobile_code{
+      width: 120px;
+      height: 36px;
+      font-family: 'Arial Normal', 'Arial';
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      color: #000000;
+      text-align: center;
+      border-radius: 0;
+      margin-left:8px;
+    }
+  #provisioning{
+      width: 140px;
+      height: 36px;
+      font-family: 'Arial Normal', 'Arial';
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      color: #000000;
+      text-align: center;
+      border-radius: 0;
+      margin-left:8px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-image: none;
+      border: 1px solid transparent;
+      width:150px;
+      border-radius: 0px;
+    }
+    .btn-default {
+      color: #333;
+      background-color: #fff;
+      border-color: #ccc;
+    }
+    .btn-primarys{
+       color: #ffffff;
+      background-color: #0044cc !important;
+      }   
+    .progress {
+      overflow: hidden;
+      height: 20px;
+      margin-bottom: 20px;
+      background-image: linear-gradient(to bottom, #f5f5f5, #524c4c) !important;
+    }
+    select {
+    line-height: 20px /9;
+    }
+    .modal.fade.in {
+        top: 52%;
+    }  
+    .modal.fade.in.yezi {
+        top: 52%;
+    }
+    #download-btn{
+      min-width: 82px;
+    }
+  </style>
+</head>
+
+<body>
+<!-- <object id="myScc" codebase="Shanghai Gotell LPA.cab#version=1,0,0,2"  classid="clsid:68D620C8-A02A-4E16-A9B8-411EDD2E35ED"></object> -->
+
+
+
+<div class="container" style="margin-top: 6%;">
+  <div class="logo">
+    <!-- <img src="public/bootstrap/img/u6.png" style="margin-left: 120px;" alt="">
+    <img src="public/bootstrap/img/u7.png" alt=""> -->
+    <img src="public/bootstrap/img/u8.png" style="width: 227px;margin-left: 8%;" alt="">
+  </div>
+  <div class="login-title">
+   &nbsp;&nbsp;&nbsp;build.gradle 漏洞扫描
+  </div>
+  <div class="login-box">
+
+    <form class="bs-docs-example form-horizontal">
+
+      <div class="control-group">
+        <label class="control-label" for="inputUrl">Github项目地址</label>
+        <div class="controls">
+          <input type="text" id="inputUrl" class="control-input" placeholder="请输入GitHub项目Clone地址">
+        </div>
+      </div>
+      
+     
+    </form>
+
+  </div>
+<!-- btn -->
+  <div class="" style="text-align: center;">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="button"  value="扫描漏洞" id="download-btn" class=" btn btn-primary ">
+          <input type="button"  value="查看结果" id="get_mobile_code" class=" btn btn-default">
+  </div>
+</div>
+<!-- loading -->
+<div id="modal-loading"> </div>
+
+
+<!-- modal -->
+<!-- Button to trigger modal -->
+<a href="#myModal" id="myModalbtn" role="button" style="visibility: hidden;" class="btn" data-toggle="modal">hidden</a>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" style="margin-top: 0 !important;">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">查看结果</h3>
+  </div>
+  <div class="modal-body">
+   <form class="bs-docs-example form-horizontal">
+     <div class="control-group">
+        <label class="control-label">索引值</label>
+        <div class="controls">
+          <input type="text" id="inputUrl" class="form-control" placeholder="请输入GitHub项目Clone地址">
+        </div>
+      </div>
+    </form>
+  </div>
+   
+  <div class="modal-footer">
+    <button class="btn" id="cancel_btn" data-dismiss="modal" aria-hidden="true">取消</button>
+    <button class="btn btn-primary" onclick="fnDelProvisioning()">确定</button>    
+  </div>
+</div>
+
+
+
+
+  <script type="text/javascript" src="public/bootstrap/js/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="public/bootstrap/js/bootstrap.js"></script>
+  <!--[if lte IE 6]>
+  <script type="text/javascript" src="public/bootstrap/js/bootstrap-ie.js"></script>
+  <![endif]-->
+
+  <!-- loading -->
+  <script type="text/javascript" src="public/bootstrap/js/base-loading.js"></script>
+  <!-- main -->
+  <script type="text/javascript" src="public/bootstrap/js/ESIM.js"></script>
+  <!-- ICCID data -->
+  <script type="text/javascript" src="public/bootstrap/js/data.js"></script>
+  <script type="text/javascript" src="public/bootstrap/js/Alert.js"></script>
+
+    
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#download-btn').click(function () {
+            RemainTime("download-btn","扫描漏洞");
+            var list = {
+              git_url: $('#inputUrl').val()
+            };
+            $.ajax({
+                //请求方式
+                type : "POST",
+                //请求的媒体类型
+                contentType: "application/json;charset=UTF-8",
+                //请求地址
+                url : "gradle-scan",
+                //数据，json字符串
+                data : JSON.stringify(list),
+                //请求成功
+                success : function(result) {
+                    console.log(result);
+                    console.log(result.status)
+                    console.log(result.message)
+                    var res= eval("("+result+")");
+                    if(res.status == 200){
+                        $("#status").empty().text(res.message);
+                        $("#filename").empty().text(res.filename);
+                        alert(res.message+res.filename);
+                    }else{
+                        alert(res.message);
+                        $("#status").empty().text(res.message);
+                    }
+                },
+                //请求失败，包含具体的错误信息
+                error : function(e){
+                    console.log(e.status);
+                    console.log(e.responseText);
+                }
+            });
+        });
+        $('#get_mobile_code').click(function(){
+          $("#myModalbtn").click();
+         
+        })
+    });
+
+
+   
+  </script>
+</body>
+</html>

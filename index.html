@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>roam2free</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+
+
+  <!-- <link rel="stylesheet" type="text/css"  href="public/bundle.css" media="screen" title="no title"> -->
+  <link rel="stylesheet" type="text/css"  href="bootstrap/css/bootstrap.min.css">
+
+  <!--[if lte IE 6]>
+  <link rel="stylesheet" type="text/css" href="public/bootstrap/css/bootstrap-ie6.css">
+  <![endif]-->
+  <!--[if lte IE 7]>
+  <link rel="stylesheet" type="text/css" href="public/bootstrap/css/ie.css">
+  <![endif]-->
+  <style>
+    .login-box{
+      width: 500px;
+      margin: auto;
+    }
+    .logo{
+      margin: auto;
+      text-align: center;
+    }
+    .login-title{
+      text-align: center;
+      white-space: nowrap;
+      font-size: 18px;
+      font-family: 'Arial Normal', 'Arial';
+      font-weight: 400;
+      font-style: normal;
+      color: #333333;
+      line-height: normal;
+      margin: 30px;
+    }
+
+    .login-box .controls input{
+      width: 300px;
+      height: 36px;
+      font-family: 'Arial Normal', 'Arial';
+      font-weight: 400;
+      font-style: normal;
+      font-size: 13px;
+      text-decoration: none;
+      color: #000000;
+      text-align: left;
+      border-radius: 0;
+    }
+    input {
+      padding: 1px 0px 1px 0px;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+    .btn{
+      width:150px;
+      border-radius: 0px;
+    }
+    .text-center{
+      text-align: center;
+    }
+    .help-block{
+      margin: 30px auto;
+    }
+ 
+    @media (max-width: 768px) {
+      .container{
+        width: 100% !important;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      .login-box{
+        width: 90%;
+      }
+      .form-horizontal .control-label{
+        width: 80px;
+      }
+      .form-horizontal .controls{
+        margin-left: 100px;
+      }
+      .login-box .controls input{
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container" style="margin: 10% auto auto;">
+  <div class="logo">
+    <!-- <img src="public/bootstrap/img/u6.png" style="margin-left: 120px;" alt=""> -->
+    <!-- <img src="public/bootstrap/img/u7.png" alt=""> -->
+    <img src="bootstrap/img/u8.png" style="width: 227px;margin-left: 8%;" alt="">
+  </div>
+  <div class="login-title">
+   &nbsp;&nbsp;&nbsp;build.gradle 漏洞扫描
+  </div>
+  <div class="login-box">
+
+    <form class="bs-docs-example form-horizontal" id="uploadForm"  method="post" target="iframe" >
+
+      <div class="control-group">
+        <label class="control-label" for="inputUsername">Username</label>
+        <div class="controls">
+          <input type="text" id="inputUsername" class="" placeholder="Username">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPassword">Password</label>
+        <div class="controls">
+          <input type="password" id="inputPassword" placeholder="Password">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <button type="button" class="btn" id="login-btn">login</button>
+          <span class="help-block">Version: Retail</span>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+
+</div>
+
+
+
+
+   <script type="text/javascript" src="bootstrap/js/jquery-1.7.2.min.js"></script>
+ 
+  <script type="text/javascript">
+  
+    $(document).ready(function () {
+        $('#login-btn').click(function () {
+          if($('#inputUsername').val() == ""){
+            alert("The username can not be empty.");
+            
+          }else{
+            location.href = "gradle-scan"
+          }
+           // location.href = "SmartCard.html"
+        });
+    });
+$(function(){
+        //请求参数
+        var list = {};
+        //
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://127.0.0.1/admin/list/",
+            //数据，json字符串
+            data : JSON.stringify(list),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    });
+
+  </script>
+</body>
+</html>
